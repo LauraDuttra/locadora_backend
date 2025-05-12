@@ -2,7 +2,7 @@
 
 Este documento descreve o funcionamento do sistema de locadora de veículos desenvolvido em PHP, utilizando Bootstrap para a interface, com autenticação de usuários, gerenciamento de veículos (carros e motos) e persistência de dados em arquivos JSON. O foco principal é explicar o funcionamento geral do sistema, com ênfase especial nos perfis de acesso (admin e usuário).
 
-## 1. visão geral do sistema
+## 1. Visão geral do sistema
 
 o sistema de locadora de veículos é uma aplicação web que permite:
 - aurenticação de usuário com dois perfis: **admin** (administrador) e **usuário**;
