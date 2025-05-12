@@ -1,28 +1,30 @@
-## *Sistema de locação de veículos 🚗🛵*
+# *Funcionamento do sistema de locadora de veículos com PHP e Bootstrap* 🔘🐘
 
-Criação de sistema de locação de veículos, com a página de admistrador - que terá como cadastrar veículos, mostrará status dos veículos, podendo excluir, devolver e alugar veículos - e a página de usuário - que poderá calcular a previsão de aluguel e ver o status dos veículos - além da página de login. As páginas foram produzidas utilizando HTML, CSS e PHP.
+Este documento descreve o funcionamento do sistema de locadora de veículos desenvolvido em PHP, utilizando Bootstrap para a interface, com autenticação de usuários, gerenciamento de veículos (carros e motos) e persistência de dados em arquivos JSON. O foco principal é explicar o funcionamento geral do sistema, com ênfase especial nos perfis de acesso (admin e usuário).
 
+## 1. visão geral do sistema
 
+o sistema de locadora de veículos é uma aplicação web que permite:
+- aurenticação de usuário com dois perfis: **admin** (administrador) e **usuário**;
+- gerenciamento de veículos: cadastro, aluguel, devolução e exclusão;
+- cálculo de previsão de aluguel: com base no tipo de veículo (carro ou moto) e número de dias;
+- interface responsiva.
 
-### Página de Admin
+os dados são armazenados em dois arquivos JSON:
+- `usuarios.json`: username, senha criptografada e perfil
+- `veiculos.json`: tipo, modelo, placa e status de disponibilidade
 
-Página de Administrador, que contém uma parte paa cadastro de novos veículos - motos e carros - e uma parte para calcular a previsão de aluguel, ou seja, o cálculo aproximado do preço  de acordo com a quantidade de dias de aluguel. Por fim, uma tabela com todos os veículos cadastrados, com botões para excluir, alugar e devolver veículos.
+## 2. Estrutura do sistema
+O sistema utiliza:
+- **PHP**: para a lógica
+- **Bootstrap**: para a estilização
+- **Bootstrap Icons**: para os ícones da interface
+- **Composer**: para autoloading de classes
+- **JSON**: para a persistência de dados
 
-![Captura de tela 2025-04-14 112352](https://github.com/user-attachments/assets/577f156a-d194-4375-bd73-82b9bf362bee)
-
-
-
-### Página de Usuário 
-
-Página de usuários, que contém parte de cálculo previsto, assim como o do admin, e a tabela de veículos, com especificação do tipo, modelo, placa e o status do veículo.
-
-![Captura de tela 2025-04-14 112456](https://github.com/user-attachments/assets/2c9884b3-9f44-4336-8c5b-582582b0c93e)
-
-
-
-### Página de Login
-
-Página de login, para entrar na página principal. É necessário a senha e o nome do usuário para entrar.
-
-![Captura de tela 2025-04-14 112535](https://github.com/user-attachments/assets/5c6d0877-5259-48c1-9f5b-27c5dedc1d9c)
- 
+### 2.1 Componentes principais
+- **Interfaces**: define a interface `Locavel` para veículos e utiliza os métodos `alugar()`, `devolver()` e `isDisponivel()`
+- **Models**: classes `Veiculo` (abstrata), `Carro` e `Moto` para os veículos, com cálculo em aluguel baseado em diárias constantes (`DIARIA_CARRO` e `DIARIA_MOTO`)
+- **Services**: Classes `AUTH` (autenticação e gerenciamento de usuários) e `Locadora` (gerenciamento dos veículos)
+- **Views**: Template principal `template.php` para renderizar a interface e `login.php` para a autenticação
+- **Controllers**: Lógica em `index.php` para processar requisições e carregar o template.
